@@ -7,6 +7,10 @@ fn main() {
             .define("OpenGL_GL_PREFERENCE", "GLVND")
             .define("DYNAMIC_LOADER", "OFF")
             .define("CMAKE_INSTALL_LIBDIR", "lib")
+            // The SDK sets its GNU install directories itself everywhere but on
+            // Android, where an empty include directory installs the headers to
+            // `/openxr` outside the output directory.
+            .define("CMAKE_INSTALL_INCLUDEDIR", "include")
             .define("BUILD_WITH_SYSTEM_JSONCPP", "OFF") // See https://github.com/KhronosGroup/OpenXR-SDK-Source/issues/481
             .profile("Release")
             .build();
